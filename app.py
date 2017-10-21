@@ -1,5 +1,7 @@
 from flask import Flask, render_template
+from helpers import *
 import xlrd
+
 
 app = Flask(__name__)
 workbook = xlrd.open_workbook('realDonaldTrump_tweets.xls')
@@ -12,9 +14,6 @@ def root():
 
 @app.route('/<month>/<day>/<year>')
 def handler(day, month, year):
-
-	
-
 
 
 	date = worksheet.cell(1,1).value
