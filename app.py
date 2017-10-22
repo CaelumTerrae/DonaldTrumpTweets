@@ -17,16 +17,11 @@ def handler(day, month, year):
 
 	dateToCheck = Date(day, month, year)
 
-	date = worksheet.cell(1,1).value
-	date = xlrd.xldate.xldate_as_tuple(date, 0)
-	tweet = worksheet.cell(1,2).value
+	tweetIndices = getTweets(dateToCheck, worksheet)
 
+	worstTweetIndex = worstTweet(tweetIndices, worksheet)
 
-
-
-
-
-
+	tweet = worksheet.cell(worstTweetIndex,2).value
 
 
 	return render_template('index.html', year=dateToCheck.year,month=dateToCheck.month,day=dateToCheck.day, tweet=tweet);
