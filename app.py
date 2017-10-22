@@ -19,7 +19,7 @@ access_secret = 	"ELm1Vhsw2zhhny5N3nDM7RVq2giDxm6BUAAFgGCW0DcKQ"
 
 @app.route('/')
 def root():
-    return 'Hello World'
+    return render_template('landing.html')
 
 @app.route('/<month>/<day>/<year>')
 def handler(day, month, year):
