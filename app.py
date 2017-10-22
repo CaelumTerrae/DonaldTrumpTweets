@@ -15,6 +15,7 @@ def root():
 @app.route('/<month>/<day>/<year>')
 def handler(day, month, year):
 
+	dateToCheck = Date(day, month, year)
 
 	date = worksheet.cell(1,1).value
 	date = xlrd.xldate.xldate_as_tuple(date, 0)
@@ -28,7 +29,7 @@ def handler(day, month, year):
 
 
 
-	return render_template('index.html', year=year,month=month,day=day, tweet=tweet);
+	return render_template('index.html', year=dateToCheck.year,month=dateToCheck.month,day=dateToCheck.day, tweet=tweet);
 
 if __name__ == '__main__':
     app.debug = True
