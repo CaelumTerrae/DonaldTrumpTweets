@@ -22,8 +22,6 @@ def getTweets(date, worksheet):
 		i += 1
 		currentDate = worksheet.cell(i,1).value
 		currentDate = xlrd.xldate.xldate_as_tuple(currentDate, 0)
-		print date.month + ' ' + date.day + ' ' + date.year
-		print str(currentDate[1]) + ' ' + str(currentDate[2]) + ' ' + str(currentDate[0])
 		if sameDate(date, currentDate):
 			tweetIndices.append(i+1)
 			

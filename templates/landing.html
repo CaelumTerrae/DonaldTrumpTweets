@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-	<title>Landing Page</title>
-	<form>
-		<div>
-			<label for="day">Enter the date:</label>
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <form action="/tweets" method="post">
+        <div class="form-group">
+            <label for="day">Enter the date:</label>
 			<input type="date" id="day" name="day" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
-			<span class="validity"></span>
-		</div>
-		<div>
-			<input type="submit">
-		</div>
-	</form>
-</body>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Get Dumb!</button>
+    </form>
+{% endblock %}
