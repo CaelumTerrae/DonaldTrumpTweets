@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+	<li> {{worstTweet.text}} </li>
+
+    {% for tweet in tweets %}
+    	<li> {{tweet.created_at}} </li>
+    {% endfor %}
+
+{% endblock %}

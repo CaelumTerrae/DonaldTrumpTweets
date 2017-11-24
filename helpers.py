@@ -13,39 +13,33 @@ class Date(object):
 def sameDate(date1, date2):
 	return date1.day == str(date2[2]) and date1.month == str(date2[1]) and date1.year == str(date2[0])
 
-# gets all tweet indexes from a given date passed to it!
-def getTweets(date, worksheet):
-	tweetIndices = []
+# gets all tweet objects from tweet list and date passed to it
+def getTweets(date, tweets):
+	matchedTweets = []
 
-	i = 0
-	while i < 3000:
-		i += 1
-		currentDate = worksheet.cell(i,1).value
-		currentDate = xlrd.xldate.xldate_as_tuple(currentDate, 0)
-		if sameDate(date, currentDate):
-			tweetIndices.append(i+1)
-			
-	return tweetIndices
+	for tweet in tweets:
+		if tweet.created_at.day == date.day and tweet.created_at.month == date.month and tweet.created_at.year == date.year:
+			matchedTweets.append(tweet)
+			print(tweet)
+	return matchedTweets
 
 
 #fetches all tweets given the index in the list and returns index of most controversial tweet!
 #most controversial defined by sum of retweets and favorites
-def worstTweet(list, worksheet):
+def worstTweet(tweets):
 	
-	if len(list) == 0:
+	if len(tweets) == 0:
 		return 0
 
-	worstIndex = list[0]
-	worstIndexScore = 0
-	for index in list:
-		currentScore = getScore(index, worksheet)
-		if currentScore > worstIndexScore:
-			worstIndexScore = currentScore
-			worstIndex = index
-	return worstIndex
-
-def getScore(index, worksheet):
-	return worksheet.cell(index,3).value + worksheet.cell(index,4).value
-	
+	worstTweet = tweets[0]
+	worstTweetScore = getScore(tweets[0])
+	for tweet in tweets:
+		currentScore = getScore(tweet)
+		if currentScore > worstTweetScore:
+			worstTweetScore = currentScore
+			worstTweet = tweet
+	return worstTweet
 
 
+def getScore(tweet):
+	return tweet.retweet_count + tweet.favorite_count
